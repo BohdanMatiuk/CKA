@@ -1,0 +1,21 @@
+11 Create a pod named kucc1 with a single container for each of the following images running inside (there may be between 1 and 4 images specified): nginx + redis + memcached + consul
+
+Answer: kubectl run kucc1 –image=nginx –dry-run=client -oyaml edit kubectl apply
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kucc1
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+  - name: redis
+    image: redis
+  - name: memcached
+    image: memcached
+  - name: consul
+    image: consul
+
+#kubectl apply -f 11.yaml
+#kubectl get pods

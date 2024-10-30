@@ -1,0 +1,22 @@
+9 Schedule a pod as follow:
+
+Name: nginx-kusc00401
+Image: nginx
+Node selector: disk=spinning
+
+Answer: kubectl run nginx –image=nginx –dry-run=client -oyaml edit
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-kusc00401
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+  nodeSelector: 
+    disk: spinning
+
+

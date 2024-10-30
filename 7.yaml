@@ -1,0 +1,29 @@
+7. Create a new nginx Ingress resource as follows:
+
+  Name: pong
+  Namespace: ing-internal
+  Exposing service hi on path /hi using service port 5678 The availability of service hi can be checked using the following command, which should return hi:
+
+    Answer: curl -kL <INTERNAL_IP>/hi
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pong
+  namespace: ing-enternal
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /hi
+        pathType: Prefix
+        backend:
+          service:
+            name: hi
+            port:
+              number: 5678
+  
+                
+  #kubectl apply -f 7.yaml
+  #kubectl get ing -n ing-internal
+

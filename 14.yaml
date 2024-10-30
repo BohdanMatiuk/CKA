@@ -1,0 +1,9 @@
+14 Monitor the logs of pod foobar and:
+
+Extract log lines corrsponding to error unable-to-access-website
+Write them to /opt/KUTR00101/foobar
+
+Answer:
+
+  # kubectl logs foobar | grep unable-to-access-website > /opt/KUTR00101/foobar
+  # cat /opt/KUTR00101/foobar

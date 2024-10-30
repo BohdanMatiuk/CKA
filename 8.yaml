@@ -1,0 +1,4 @@
+8 Scale the deployment loadbalancer to 6 pods.
+
+ANSWER:
+  kubectl scale deploy loadbalancer --replicas=6
