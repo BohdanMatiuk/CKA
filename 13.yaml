@@ -1,14 +1,26 @@
+13 Create a new PVC:
+
+Name: pv-volume
+Class: csi-hostpath-sc
+Capacity: 10Mi Create a new Pod which mounts the PVC as a volume:
+Name: web-server
+Image: nginx
+Mount path: /usr/share/nginx/html Configure the new Pod to have ReadWriteOnce access on the volume. Finally, using kubectl edit or kubectl path expand the PVC to a capacity 70Mi and record that change.
+
+
+
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pv-volume
 spec:
-  storageClassName: standard
+  storageClassName: csi-hostpath-sc
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 10Mi
 ---
 
 apiVersion: v1
@@ -31,6 +43,8 @@ spec:
         # # kubernetes.io --> "pod with pvc"
         #  run #k get sc --to see if ALLOWVOLUMEEXPANSION = true
           #k edit pvc pv-volume --save-config
-          #change volume
-          #rerun change status to new volume
+          #change volume and #delete status info
+          #rerun k get pvc few times
+          #run k edit pvc pv-volume --save-config
+          #and change the volume in status section
           #run #k get pvc (new capacity will show)
