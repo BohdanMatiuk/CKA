@@ -10,7 +10,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: pong
-  namespace: ing-enternal
+  namespace: ing-internal
 spec:
   rules:
   - http:

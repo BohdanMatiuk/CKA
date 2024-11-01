@@ -2,6 +2,9 @@
 
 ANSWER
 
+   kubernetes.io --> "pod with pvc"
+
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -16,5 +19,4 @@ spec:
   hostPath:
     path: "/srv/app-config"
 
-            # kubernetes.io --> "pod with pvc"
-
+  kubectl get pv
