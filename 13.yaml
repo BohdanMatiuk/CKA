@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pv-volume
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-server
+spec:
+  containers:
+    - name: web
+      image: nginx
+      volumeMounts:
+      - mountPath: "/usr/share/nginx/html"
+        name: w-vol
+  volumes:
+    - name: w-vol
+      persistentVolumeClaim:
+        claimName: pv-volume
+
+
+        # # kubernetes.io --> "pod with pvc"
+        #  run #k get sc --to see if ALLOWVOLUMEEXPANSION = true
+          #k edit pvc pv-volume --save-config
+          #change volume
+          #rerun change status to new volume
+          #run #k get pvc (new capacity will show)

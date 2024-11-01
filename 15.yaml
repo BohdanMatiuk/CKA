@@ -1,0 +1,45 @@
+---
+# 1. k get pods ---> k get pods busybox -o yaml > 15.yaml
+# 2. modify the file 
+  
+
+  apiVersion:
+  kind:
+  metadata:
+  spec:
+    containers:
+       dont modify the containers!
+    but remove everything to the:
+    volumes:
+      -name: only_name_basicall:
+
+# 3. google "loggin architecture" --> "sideCar" container --> second example is on how to add second container
+# 4. adding second container to modifiying file
+       apiVersion:
+  kind:
+  metadata:
+  spec:
+    containers:
+    dont modify this container!
+    - name:
+      image:
+      args:
+      - /bin/sh
+      - -c
+      - command
+      volumeMounts:
+      - name: logs
+        mountPath: /var/log
+       --------
+    - name: busy-side
+      image: busybox
+      args: [/bin/sh, -c, 'tail -n+1 -f /var/log/legacy-ap.log']
+      volumeMounts:
+      - name: logs
+        mountPath: /var/log 
+       --------
+    volumes:
+    - name: 
+      emptyDir: {}
+# 5. cannot run #k apply -f 15.yaml it will complain. Instead delete existing pod and recreate with the fie 15.yaml
+# 6. run #k get pods --> budybox - 2/2 - Running 

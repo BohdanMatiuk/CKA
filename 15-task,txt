@@ -1,0 +1,9 @@
+15 Without changing its existing containers, an existing Pod needs to be integrated into Kubernetes’s built-in logging architecture(e.g. kubectl logs). Adding a streaming sidecar container is a good and common way to accomplish this requirement.
+
+Add a busybox sidecar container to the existing Pod legacy-app. The new sidecar container has to run the following command: /bin/sh -c tail -n+1 -f /var/log/legac-appp.log
+
+Use a volume mount named logs to make the file /var/log/legacy-app.log available to the sidecar container.
+
+Don’t modify the existing container.
+Don’t modify the path of the log file, both containers must access it at /var/log/legacy-app.log.
+Answer: kubectl get pod xxx -oyaml

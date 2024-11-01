@@ -1,0 +1,20 @@
+12 Creae a persistent volume with name app-config of capacity 1Gi and access mode ReadWriteOnce. The type of volume is hostPath and its location is /srv/app-config
+
+ANSWER
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: app-config
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/srv/app-config"
+
+            # kubernetes.io --> "pod with pvc"
+
