@@ -6,7 +6,8 @@ Configure the new service to also expose the individual Pods via a NodePort on t
 
 #1. kubectl get deploy
 #2. kubectl edit deploy NAME
-#3.     spec:
+
+#3. spec:
       containers:
       - image: nginx
         imagePullPolicy: Always

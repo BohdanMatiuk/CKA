@@ -4,7 +4,11 @@ Name: nginx-kusc00401
 Image: nginx
 Node selector: disk=spinning
 
-Answer: kubectl run nginx –image=nginx –dry-run=client -oyaml edit
+Answer: 
+  kubectl get nodes --show-labels | grep disk=spinning
+  kubectl run nginx –image=nginx –dry-run=client -oyaml edit
+ 
+  #google  "nodeselector" "assign pods to nodes"
 
 apiVersion: v1
 kind: Pod
@@ -19,4 +23,4 @@ spec:
   nodeSelector: 
     disk: spinning
 
-
+      kubectl describe pod nginx-kusc00401 | grep disk=

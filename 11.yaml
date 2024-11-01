@@ -18,4 +18,4 @@ spec:
     image: consul
 
 #kubectl apply -f 11.yaml
-#kubectl get pods
+#kubectl get pods kucc1
