@@ -21,8 +21,8 @@
   spec:
     containers:
     dont modify this container!
-    - name:
-      image:
+    - name: busybox
+      image: nginx
       args:
       - /bin/sh
       - -c
@@ -39,7 +39,7 @@
         mountPath: /var/log 
        --------
     volumes:
-    - name: 
+    - name: logs
       emptyDir: {}
 # 5. cannot run #k apply -f 15.yaml it will complain. Instead delete existing pod and recreate with the fie 15.yaml
-# 6. run #k get pods --> budybox - 2/2 - Running 
+# 6. run #k get pods --> busybox - 2/2 - Running 
