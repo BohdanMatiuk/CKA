@@ -1,0 +1,77 @@
+5 Create a new NetworkPolicy name allow-port-from-namespace that allows Pods in the existing namespace internal to connect to port 9000 of other Pods in the same namespace, Ensure that the new NetworkPolicy:
+
+  -does not allow access to Pods not listening on port 9000
+  -does not allow access from Pods not in namespace internal
+
+Answer:
+
+  google: network policy
+
+    1. 
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-port-namespace
+  namespace: internal
+spec:
+  podSelector: {}
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          project: myproject
+          k get ns internal --show-labels
+          insert: label here for internal-namespace
+          or run k label ns internal key1=value1 
+    - podSelector: {}
+    ports:
+    - protocol: TCP
+      port: 9000
+
+      2. kubectl get netpol
+         kubectl describe netpol allow-port-namespace
+
+
+
+        ***********************************888
+        original code
+
+        apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 172.17.0.0/16
+        except:
+        - 172.17.1.0/24
+    - namespaceSelector:
+        matchLabels:
+          project: myproject
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 6379
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 10.0.0.0/24
+    ports:
+    - protocol: TCP
+      port: 5978

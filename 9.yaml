@@ -5,10 +5,9 @@ Image: nginx
 Node selector: disk=spinning
 
 Answer: 
-  kubectl get nodes --show-labels | grep disk=spinning
-  kubectl run nginx –image=nginx –dry-run=client -oyaml edit
- 
-  #google  "nodeselector" "assign pods to nodes"
+  1. kubectl get nodes --show-labels | grep disk=spinning
+  2. kubectl run nginx –image=nginx –dry-run=client -o yaml > 9.yaml
+ or #google  "nodeselector" "assign pods to nodes"
 
 apiVersion: v1
 kind: Pod
@@ -17,10 +16,12 @@ metadata:
 spec:
   containers:
   - name: nginx
-    image: nginx:1.14.2
+    image: nginx
     ports:
     - containerPort: 80
   nodeSelector: 
     disk: spinning
 
+      kubectl get pods -o wide
       kubectl describe pod nginx-kusc00401 | grep disk=
+

@@ -1,0 +1,10 @@
+10 Check to see how many nodes are ready (not including nodes tainted NoSchedule) and write the number to /opt/nodenum
+
+Answer:
+
+  1. kubectl get nodes 
+  2. kubectl describe nodes |grep -i NoSchedule
+
+  3. verify how many is READY (not including NoSchedule -tainted nodes)
+      echo #number /opt/nodenum  
+                        

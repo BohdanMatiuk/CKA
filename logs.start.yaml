@@ -1,0 +1,4 @@
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2024/11/01 14:25:00 [notice] 1#1: start worker processes
+2024/11/01 14:25:00 [notice] 1#1: start worker process 29
+2024/11/01 14:25:00 [notice] 1#1: start worker process 30

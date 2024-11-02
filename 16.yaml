@@ -1,0 +1,9 @@
+16 From the pod label name=cpu-user,find pods running high CPU workloads and write the name of the pod consuming most CPU to the fule /opt/KUT00401/KUT00401.txt (which already exists).
+
+Answer:
+
+  1. kubectl top pods -l name=cpu-user -A
+
+  2. echo 'pod name' >> /opt/KUT00401/KUT00401.txt
+
+  3. cat /opt/KUT00401/KUT00401.txt

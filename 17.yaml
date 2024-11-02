@@ -1,0 +1,19 @@
+
+17 A Kubernetes worker node, named wk8s-node-0 is in state NotReady. Investigate why this is the case, and perform any appropriate steps to bring the node to a Ready state, ensuring that any changes are made permanent.
+
+Answer:
+
+ 1. kubectl get nodes
+ 2. kubectl describe wk8s-node-0 (look for Events:)
+ 3. ssh wk8s-node-0
+      3.1 sudo -i
+      3.2 systemctl status kubelet
+      3.3 systemctl start kubelet
+      3.4 systemctl enable kubelet
+      
+      3.5 systemctl statis kubelet
+            #exit 
+            to regular user (from root)
+            #exit
+            to Bashion machine
+ 4. kubectl get nodes/ kubectl describe wk8s-node-0

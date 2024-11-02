@@ -1,0 +1,18 @@
+2 Set the node labelled with name=ek8s-node-1 as unavailable and reschedule all the pods running on it.
+
+Answer:
+
+  1. kubectl get nodes --show-labels |grep name=ek8s-node-1
+
+  2. kubectl cordon NODE_NAME (to make the Node unavailable)
+
+  3. kubectl get nodes (STATUS -- Ready,SchedulingDisabled)
+
+  4. kubectl drain NODE_NAME
+        (to reschedule all the pods running on it)
+                            "..cannot delete DaemontSet-managed Pods.."
+
+      5. kubectl drain NODE_NAME --ignore-daemonsets --force 
+      (to reSchedule all the pods running on it -forcefully & -ignore daemonts)
+
+      6. kubectl get nodes -o wide (to confirm)

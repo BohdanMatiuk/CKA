@@ -1,0 +1,38 @@
+3 Given an existing Kubernetes cluster running version 1.18.8, upgrade all of the Kubernetes control plan and node components on the master node only to version 1.19.0. You are also expected to upgrade kubelet and kubectl on the master node.
+
+Answer:
+
+  1. kubectl cordon MASTER_NODE_NAME
+     kubectl drain  MASTER_NODE_NAME
+     kubectl drain  MASTER_NODE_NAME --ignore-daemonsets --force
+        run kubectl get pods to see MASTER_NODE_NAME STATUS (Ready,NoScheduling)
+  2. ssh MASTER_NODE_NAME
+          sudo -i
+      2.1 google 'update cluster' --> link "Upgrading a kubeadm cluster from 1.29 to 1.30"
+           "Determine which version to upgrade to"
+        sudo apt update
+        sudo apt-cache madison kubeadm (to see available version for upt --choose the version they're asking)
+          
+
+      2.2 kubermetes.io "Upgrading control plane nodes"
+      sudo apt-get install -y kubeadm=1.30.2.2 kubectl=1.30.2.2 kubelet=1.30.2.2
+
+same box command:
+      
+      sudo apt-mark hold kubeadm
+
+      2.3 kubeadm version
+      2.4 Choose a version to upgrade to, and run the appropriate command. For example:
+          replace x with the patch version you picked for this upgrade 
+          
+          sudo kubeadm upgrade apply v1.30.2 (only 1.0) 
+
+
+          if they say "dont upgrade ETCD" run 
+                                              sudo kubeadm upgrade apply v1.30.2 --etcd-upgrade=false
+  
+  3. kubectl uncodon MASTER_NODE_NAME
+     kubectl get nodes 
+      
+            
+          

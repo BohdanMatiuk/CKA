@@ -1,0 +1,14 @@
+1 Create a new ClusterRole named deployment-clusterrole,which only allows to create the following resource types:
+
+Deployment
+StatefulSet
+DeamonSet 
+  Create a new ServiceAccount named cicd-token in the existing namespace app-team1. Bind the new ClusterRole deployment-clusterrole to the new ServiceAccount cicd-token, limit to the namespace app-team1
+Answer:
+  1. kubectl create clusterrole deployment-clusterrole --resource=deployments,statefulstes,daemonset --verb=create
+  2. kubectl get clusterrole |grep deployment-clusterrole
+
+  3. kubectl create sa cicd-token -n app-team1     (service_account)
+  4. kubectl create rolebinding Name --clusterrole=deployment-clusterrole --serviceaccount=app-team1:cicd-token -n app-team1
+  5. kubectl get rolebinding -n app-team1
+          
