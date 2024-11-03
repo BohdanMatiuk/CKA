@@ -42,4 +42,4 @@
     - name: logs
       emptyDir: {}
 # 5. cannot run #k apply -f 15.yaml it will complain. Instead delete existing pod and recreate with the fie 15.yaml
-# 6. run #k get pods --> busybox - 2/2 - Running 
+# 6. run #k get pods --> busybox - 2/2 - Running   or kubectl logs <pod_name> -c <container_name> 
