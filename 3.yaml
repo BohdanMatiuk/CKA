@@ -31,7 +31,7 @@ same box command:
           if they say "dont upgrade ETCD" run 
                                               sudo kubeadm upgrade apply v1.30.2 --etcd-upgrade=false
   
-  3. kubectl uncodon MASTER_NODE_NAME
+  3. kubectl uncordon MASTER_NODE_NAME
      kubectl get nodes 
       
             
