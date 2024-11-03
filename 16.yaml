@@ -2,7 +2,7 @@
 
 Answer:
 
-  1. kubectl top pods -l name=cpu-user -A
+  1. kubectl top pods -l name=cpu-user -A --sort-by=cpu
 
   2. echo 'pod name' >> /opt/KUT00401/KUT00401.txt
 
