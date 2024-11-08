@@ -15,6 +15,9 @@ Answer:
           
 
       2.2 kubermetes.io "Upgrading control plane nodes"
+
+      udo apt-mark unhold kubelet kubectl
+
       sudo apt-get install -y kubeadm=1.30.2.2 kubectl=1.30.2.2 kubelet=1.30.2.2
 
 same box command:
@@ -25,7 +28,7 @@ same box command:
       2.4 Choose a version to upgrade to, and run the appropriate command. For example:
           replace x with the patch version you picked for this upgrade 
           
-          sudo kubeadm upgrade apply v1.30.2 (only 1.0) 
+          sudo kubeadm upgrade apply v1.30.2 (only v1.X.x) 
 
 
           if they say "dont upgrade ETCD" run 
